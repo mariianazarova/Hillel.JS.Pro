@@ -3,9 +3,8 @@ let mySurmame = "Nazarova";
 let myCity = "Bilgorod-Dnistrovskyi";
 let a = (2 + 3 + 4 + 6) / 4;
 let r = 4;
-const P = 3.14;
-let l = 2 * P * r;
-let S = P * r * r;
+let l = 2 * Math.PI * r;
+let S = Math.PI * Math.pow(r, 2);
 
 /*let my-Name;*/
 /*let @myName;*/
