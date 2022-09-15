@@ -62,8 +62,8 @@ for (let i = 10; i <= 100; i += 10) {
 let amountPositive = 0,
     amountNegative = 0,
     amountZero = 0,
-    amountPair = 0,
-    amountUnpaired = 0;
+    amountEven = 0,
+    amountOdd = 0;
 for (let i = 1; i <= 15; i++) {
     const num = +prompt("Enter please number 15 once");
     if (num > 0) {
@@ -74,13 +74,13 @@ for (let i = 1; i <= 15; i++) {
         amountZero++;
     }
     if ((num % 2) === 0) {
-        amountPair++;
+        amountEven++;
     } else {
-        amountUnpaired++;
+        amountOdd++;
     }
 }
 console.log(`The amount of positive number is ${amountPositive}`);
 console.log(`The amount of negative number is ${amountNegative}`);
 console.log(`The amount of zero number is ${amountZero}`);
-console.log(`The amount of pair number is ${amountPair}`);
-console.log(`The amount of uppaired number is ${amountUnpaired}`);
+console.log(`The amount of even number is ${amountEven}`);
+console.log(`The amount of odd number is ${amountOdd}`);
