@@ -43,20 +43,16 @@ getPerfectNumber(5);
 
 /*Написати функцію, яка приймає 2 аргументи та обраховує суму в цьому проміжку. 
 Зверніть увагу, що можна передати 10 та -2, як аргументи. Суму всіх чисел в цьому проміжку також треба обчислити*/
-
 const getSum = (num_1, num_2) => {
     let sumNumbers = +(num_1);
     for (let i = +(num_1); i <= +(num_2); i++) {
         sumNumbers += i;
-
     }
     if (!isNaN(sumNumbers)) {
         return sumNumbers;
     } else {
         console.log("I can't do the calculations");
-
     }
-
 }
 getSum(1, 10);
 
@@ -67,7 +63,6 @@ const convertTemperature = function (tempCelsius) {
         return tempFahrenheit;
     } else {
         console.log("I can't do the calculations");
-
     }
 }
 convertTemperature(10);
