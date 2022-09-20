@@ -5,7 +5,6 @@ function getMinNumber(num_1, num_2, num_3, num_4) {
         return result;
     } else {
         console.log("I can't figure out min number");
-
     }
 }
 getMinNumber("5", 0, 5, 2);
