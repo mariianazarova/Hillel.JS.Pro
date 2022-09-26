@@ -26,10 +26,10 @@ const newTeam_1 = RegisterAutoRacingTeam('AutoFirst', 'Petr', 1991, 'Audi', 'Mic
 Дані про користувача - логін, пароль, місто, країна, стать, вік */
 const newUser = {};
 newUser.login = prompt("Enter please login");
-newUser.password = promt("Enter please password");
+newUser.password = prompt("Enter please password");
 newUser.city = prompt("Enter please city");
-newUser.country = promt("Enter please country");
-newUser.sex = promt("Enter please sex");
+newUser.country = prompt("Enter please country");
+newUser.sex = prompt("Enter please sex");
 newUser.age = prompt("Enter please age");
 for (let key in newUser) {
     console.log(key);
