@@ -33,5 +33,5 @@ newUser.sex = promt("Enter please sex");
 newUser.age = prompt("Enter please age");
 for (let key in newUser) {
     console.log(key);
-    console.log(new [key]);
+    console.log(newUser[key]);
 }
