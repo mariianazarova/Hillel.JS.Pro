@@ -22,6 +22,7 @@ const registerAutoRacingTeam = (teamName, driverName, bithOfYearDriver, carBrand
     }
 }
 const newTeam_1 = registerAutoRacingTeam('AutoFirst', 'Petr', 1991, 'Audi', 'Microsoft', true);
+
 /*Запитати дані (через prompt та циклічно) про нового користувача у системі та зберегти його в об'єкт. 
 Дані про користувача - логін, пароль, місто, країна, стать, вік */
 for (let i = 0; i <= 3; i++) {
@@ -37,6 +38,7 @@ for (let key in newUser) {
     console.log(key);
     console.log(newUser[key]);
 }
+
 /*Створити функцію, яка буде міняти дані в конкретного користувача створеного пунктом вище. 
 Наприклад сhangeUserData(user_1, city, 'Kherson'). Де user_1 - 
 обʼєкт в якому буде мінятись, city - поле, яке буде мінятися на нове значення - 'Kherson'*/
@@ -65,6 +67,7 @@ const student = {
         console.log("Sending my howework... Please, wait");
     }
 }
+
 /*Cтворити функцію isEmpty, яка повертає true, якщо об’єкт не має властивостей (порожній), інакше false.*/
 const isEmpty = (obj) => {
     for (let key in obj) {
