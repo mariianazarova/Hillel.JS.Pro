@@ -1,6 +1,6 @@
 /*Створити масив, довжину та елементи якого задає користувач (через prompt).
  Елементами масиву повинні бути числа*/
-const arrayNumber = Array();
+const arrayNumber = [];
 const lengthArray = +prompt("Enter please the length of array");
 if (!Number.isInteger(lengthArray)) {
     console.log("Sorry, we cannot to process data");
@@ -10,7 +10,7 @@ if (!Number.isInteger(lengthArray)) {
         if (!Number.isInteger(elementArray)) {
             console.log("Sorry, elements of array need to be numbers");
         } else {
-            arrayNumber.push(+elementArray);
+            arrayNumber.push(elementArray);
         }
     }
 }
@@ -87,7 +87,7 @@ const addNewProduct = (product) => {
             productPrice,
             productQuantity
         })
-        return product;
+
     }
 }
 console.log(addNewProduct(purchasesList));
@@ -106,7 +106,7 @@ const deleteProduct = (product) => {
             console.log("Sorry, we cannot find product");
         }
     }
-    return product;
+
 }
 console.log(deleteProduct(purchasesList));
 
@@ -114,9 +114,10 @@ console.log(deleteProduct(purchasesList));
 const arrayNumber_2 = [16, -3, 54, -4, 72, -56, 47, -12, 4, -16, 25, -37, 46, 4, -51, 27, -8, 4, -54, 76, -4, 12, 6, -35];
 
 /*Знайти суму та кількість позитивних елементів.*/
-let sumPositiveNumber=0;
-arrayNumber_2.forEach(element=>element > 0 ? sumPositiveNumber+=element:false);
-arrayNumber_2.filter(element => element > 0).length;
+let sumPositiveNumber = 0;
+arrayNumber_2.forEach(element => element > 0 && (sumPositiveNumber += element));
+let amountPositiveNumber = 0;
+arrayNumber_2.forEach(element => element > 0 && amountPositiveNumber++);
 
 /*Знайти мінімальний елемент масиву та його порядковий номер.*/
 const minNumber = Math.min(...arrayNumber_2);
@@ -127,16 +128,17 @@ const maxNumber = Math.max(...arrayNumber_2);
 const indexMaxNumber = arrayNumber_2.indexOf(maxNumber) + 1;
 
 /*Визначити кількість негативних елементів.*/
-arrayNumber_2.filter(element => element < 0).length;
+let amountNegativeNumber = 0;
+arrayNumber_2.forEach(element => element < 0 && amountNegativeNumber++);
 
 /*Знайти кількість непарних позитивних елементів.*/
-arrayNumber_2.filter(element => element % 2 !== 0 && element > 0).length;
+let amountUnpairedNumber = 0;
+arrayNumber_2.forEach(element => element % 2 !== 0 && element > 0 && amountUnpairedNumber++);
 
 /*Знайти суму парних позитивних елементів.*/
-let sumPositiveUnpairedNumber = 0;
-const PositiveUnpairedNumber = arrayNumber_2.filter(element => element % 2 == 0 && element > 0);
-PositiveUnpairedNumber.forEach(element => sumPositiveUnpairedNumber += element);
+let sumPositivePairedNumber = 0;
+arrayNumber_2.forEach(element => element % 2 == 0 && element > 0 && (sumPositivePairedNumber += element));
 
 /*Знайти добуток позитивних елементів.*/
 let multiplicationPositiveNumber = 1;
-arrayNumber_2.forEach(element => element > 0 ? multiplicationPositiveNumber *= element : false);
+arrayNumber_2.forEach(element => element > 0 && (multiplicationPositiveNumber *= element));
