@@ -1,14 +1,14 @@
 //Додати 0.1 та 0.2 так, що був правильний математичний результат
-const NUMBER_1 = 0.1;
-const NUMBER_2 = 0.2;
-const RESULT = +(NUMBER_1 + NUMBER_2).toFixed(1);
-console.log(RESULT);
+const number_1 = 0.1;
+const number_2 = 0.2;
+const result = +(number_1 + number_2).toFixed(1);
+console.log(result);
 
 //Зберегти логін користувача із prompt
-const USER_LOGIN = prompt("Enter Your Login");
+const userLogin = prompt("Enter Your Login");
 
 // Зберегти пароль користувача із prompt
-const USER_PASSWORD = prompt("Enter Your Password");
+const userPassword= prompt("Enter Your Password");
 
 /*Задати умову таким чином, щоб користувач мав змогу зайти в адмін панель, 
 тоді й тільки тоді, коли логін та пароль будуть: admin та 12pass33210 відповідно. 
@@ -16,54 +16,54 @@ const USER_PASSWORD = prompt("Enter Your Password");
 Якщо ввів невірно пароль - повідомляємо, що проблема з логіном або паролем.
 Якщо ввів невірно логін - повідомляємо, що проблема з логіном або паролем.
 Якщо ввів обидва невірно - повідомляємо, що такий користувач немає доступу до admin-панелі*/
-if (USER_LOGIN === 'admin' && USER_PASSWORD === '12pass33210') {
+if (userLogin === 'admin' && userPassword === '12pass33210') {
     console.log("Congratulations! You Successfully Login!");
-} else if (USER_LOGIN !== 'admin' && USER_PASSWORD !== '12pass33210') {
+} else if (userLogin !== 'admin' && userPassword !== '12pass33210') {
     console.log("Sorry, You Do Not Have Access To The Admin Panel");
-} else if (USER_LOGIN !== 'admin' || USER_PASSWORD !== '12pass33210') {
+} else if (userLogin !== 'admin' || userPassword !== '12pass33210') {
     console.log("You Have А Problem With Your Login Or Password");
 }
 
 //Запитати в користувача та зберегти кількість грошей, які в нього є.
-const USER_MONEY = +prompt("How Money (UAH) Do You Have? Please Enter Only Number");
+const userMoney = +prompt("How Money (UAH) Do You Have? Please Enter Only Number");
 
 //Через console.log показати прейскурант цін (Кавун: 21 грн, Морква: 8 грн, Картопля: 12 грн тощо)
-const PRICE_WATEMELON = 21;
-const PRICE_CARROT = 8;
-const PRICE_POTATOE = 12;
+const priceWatemelon = 21;
+const priceCarrot = 8;
+const pricePotatoe = 12;
 
 //Через console.log показати прейскурант цін (Кавун: 21 грн, Морква: 8 грн, Картопля: 12 грн тощо)
-console.log(`Price Of Watermelon Is ${PRICE_WATEMELON} UAH`);
-console.log(`Price Of Carrot Is ${PRICE_CARROT} UAH`);
-console.log(`Price Of Potatoe Is ${PRICE_POTATOE} UAH`);
+console.log(`Price Of Watermelon Is ${priceWatemelon} UAH`);
+console.log(`Price Of Carrot Is ${priceCarrot} UAH`);
+console.log(`Price Of Potatoe Is ${pricePotatoe} UAH`);
 
 //Запитати в користувача, що він б хотів купити
-const PURCHASE = prompt("What Would You Buy? Choose Please One Kind Of Products.");
+const purchase = prompt("What Would You Buy? Choose Please One Kind Of Products.");
 
 /*Порахувати максимальну кількість придбаного продукту який він обрав та який залишок в нього залишиться. Наприклад: користувач ввів 100 грн й захотів купити кавуни. Максимальна кількість кавунів - 4 шт. та залишок 16 грн. Результат вивести в console у форматі - "За {тут_початкова_сума} грн. Ви можете придбати {тут_кількість} даного продукту. У Вас залишиться {тут_залишок}"
 Якщо користувач ввів суму меншу за ціну будь-якого продукту - то потрібно повідомити у форматі "На жаль, у Вас недостатньо коштів для купівлі хоча б 1 шт. будь-якого продукту"
 Якщо користувач ввів, наприклад, 20 грн. та хоче придбати кавун, тоді варто повідомити у такому форматі "У вас недостатньо коштів, для купівлі хоча б 1 шт. {тут_назва_продукту}"*/
-if (PURCHASE === 'Watermelon' || PURCHASE === 'watermelon' || PURCHASE === 'Watermelons' || PURCHASE === 'watermelons') {
-    if (USER_MONEY >= PRICE_WATEMELON) {
-        const AMOUNT_WATERMELON = Math.floor(USER_MONEY / PRICE_WATEMELON);
-        const REMAINDER_MONEY = USER_MONEY % PRICE_WATEMELON;
-        console.log(`Using ${USER_MONEY} UAH You Could Buy ${AMOUNT_WATERMELON} Watermelon. You Will Have ${REMAINDER_MONEY} UAH`);
+if (purchase === 'Watermelon' || purchase === 'WATERMELON' || purchase === 'WATERMELON'.toLocaleLowerCase() || purchase === 'Watermelons' || purchase === 'Watermelons'.toLocaleLowerCase()) {
+    if (userMoney >= priceWatemelon) {
+        const amountWatermelon = Math.floor(userMoney /priceWatemelon);
+        const remainderMoney = userMoney% priceWatemelon;
+        console.log(`Using ${userMoney} UAH You Could Buy ${amountWatermelon} Watermelon. You Will Have ${remainderMoney} UAH`);
     } else {
         console.log("Unfortunately, You Do Not Have Enough Money To Buy At Least One Watermelon.");
     }
-} else if (PURCHASE === 'Carrot' || PURCHASE === 'carrot' || PURCHASE === 'Carrots' || PURCHASE === 'carrots') {
-    if (USER_MONEY >= PRICE_CARROT) {
-        const AMOUNT_CARROT = Math.floor(USER_MONEY / PRICE_CARROT);
-        const REMAINDER_MONEY = USER_MONEY % PRICE_CARROT;
-        console.log(`Using ${USER_MONEY} UAH You Could Buy ${AMOUNT_CARROT} Carrot. You Will Have ${REMAINDER_MONEY} UAH`);
+} else if (purchase === 'Carrot' || purchase === 'CARROT' || purchase === 'CARROT'.toLocaleLowerCase() || purchase === 'Carrots' || purchase === 'Carrots'.toLocaleLowerCase()) {
+    if (userMoney>= priceCarrot) {
+        const amountCarrot = Math.floor(userMoney / priceCarrot);
+        const remainderMoney = userMoney % priceCarrot;
+        console.log(`Using ${userMoney} UAH You Could Buy ${amountCarrot} Carrot. You Will Have ${remainderMoney} UAH`);
     } else {
         console.log("Unfortunately, You Do Not Have Enough Money To Buy At Least One Carrot.");
     }
-} else if (PURCHASE === 'Potatoe' || PURCHASE === 'potatoe' || PURCHASE === 'Potatoes' || PURCHASE === 'potatoes') {
-    if (USER_MONEY >= PRICE_POTATOE) {
-        const AMOUNT_POTATOE = Math.floor(USER_MONEY / PRICE_POTATOE);
-        const REMAINDER_MONEY = USER_MONEY % PRICE_POTATOE;
-        console.log(`Using ${USER_MONEY} UAH You Could Buy ${AMOUNT_POTATOE} Potatoe. You Will Have ${REMAINDER_MONEY} UAH`);
+} else if (purchase === 'Potatoe' || purchase === 'POTATOE' || purchase === 'POTATOE'.toLocaleLowerCase() || purchase === 'Potatoes' || purchase === 'Potatoes'.toLocaleLowerCase()) {
+    if (userMoney >= pricePotatoe) {
+        const amountPotatoe= Math.floor(userMoney / pricePotatoe);
+        const remainderMoney = userMoney % pricePotatoe;
+        console.log(`Using ${userMoney} UAH You Could Buy ${amountPotatoe} Potatoe. You Will Have ${remainderMoney} UAH`);
     } else {
         console.log("Unfortunately, You Do Not Have Enough Money To Buy At Least One Potatoe.");
     }
@@ -72,12 +72,12 @@ if (PURCHASE === 'Watermelon' || PURCHASE === 'watermelon' || PURCHASE === 'Wate
 }
 
 //Запитати у користувача дані про трикутник - три сторони (три окремі prompt)
-const TRIANGLE_FIRST_SIDE = +prompt("Enter Please The First Side Of Triangle");
-const TRIANGLE_SECOND_SIDE = +prompt("Enter Please The Second Side Of Triangle");
-const TRIANGLE_THIRD_SIDE = +prompt("Enter Please The Third Side Of Triangle");
+const triangleFirstSide = +prompt("Enter Please The First Side Of Triangle");
+const triangleSecondSide = +prompt("Enter Please The Second Side Of Triangle");
+const triangleThirdSide = +prompt("Enter Please The Third Side Of Triangle");
 
 //Необхідно визначити, чи такий трикутник існує
-if (TRIANGLE_FIRST_SIDE + TRIANGLE_SECOND_SIDE > TRIANGLE_THIRD_SIDE && TRIANGLE_SECOND_SIDE + TRIANGLE_THIRD_SIDE > TRIANGLE_FIRST_SIDE && TRIANGLE_THIRD_SIDE + TRIANGLE_FIRST_SIDE > TRIANGLE_SECOND_SIDE) {
+if (triangleFirstSide + triangleSecondSide > triangleThirdSide && triangleSecondSide + triangleThirdSide > triangleFirstSide && triangleThirdSide + triangleFirstSide > triangleSecondSide) {
     console.log("The Triangle Exits");
 } else {
     console.log("The Triangle Doesn't Exit");
