@@ -133,12 +133,12 @@ const beverages2={
     kind:'alcoholic'
 }
 
-const checObj = function(beverages1,beverages2){
-    for(let i in beverages1)
+const checObj = function(obj1,obj2){
+    for(let i in obj1)
     {
-        for (let j in beverages2)
+        for (let j in obj2)
         {
-            if(beverages1[i]===beverages2[j])
+            if(obj1[i]===obj2[j])
             {
                 console.log("Beverages is identical");
             } else{
@@ -147,4 +147,4 @@ const checObj = function(beverages1,beverages2){
         }
     }
 }
-checObj();
+checObj(beverages1,beverages2);
