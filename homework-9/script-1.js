@@ -101,7 +101,7 @@ const checkInfo = function () {
     }
 }
 const person2 = new Person('Olga', 29, 'female', 'ukrainian', 'Ukraine', ['Austria', 'Poland', 'Germany']);
-checkInfo.call(person2, person2.namePerson, person2.agePerson, person2.sexPerson, person2.nationalityPerson, person2.countryPerson, person2.listCountryForTravelling);
+checkInfo.apply(person2);
 
 //Створити власну реалізацію методу .bind (підказка: в кінці треба помістити цю власну 
 //функцію у прототип - Function.prototype.myOwnBind = function () { [тут_код_кастомного_bind] }
@@ -122,3 +122,29 @@ const myOwnBind = function () {
 }
 const dog1 = new Dog('Rex', 5, 'male');
 myOwnBind.bind(dog1)();
+
+//Cтворити функцію, котра приймає 2 параметри - об'єкти. Функція повинна перевіряти чи ці 2 обʼєкти абсолютно ідентичні та повертає результат у зрозумілому форматі
+const beverages1={
+    name:'majito',
+    kind:'non-alcoholic'
+}
+const beverages2={
+    name:'blue lagoon',
+    kind:'alcoholic'
+}
+
+const checObj = function(beverages1,beverages2){
+    for(let i in beverages1)
+    {
+        for (let j in beverages2)
+        {
+            if(beverages1[i]===beverages2[j])
+            {
+                console.log("Beverages is identical");
+            } else{
+                console.log("Beverages isn't identical");  
+            }
+        }
+    }
+}
+checObj();
