@@ -137,7 +137,7 @@ const checkObj = function (obj1, obj2) {
     for (let i in obj1) {
 
         for (let j in obj2) {
-            if (isNaN(obj1[i])&& obj1[i] === undefined && obj1[i] === null && isNaN(obj2[i])&& obj2[i] === undefined && obj2[i] === null) {
+            if (isNaN(obj1[i]) && obj1[i] === undefined && obj1[i] === null && isNaN(obj2[i]) && obj2[i] === undefined && obj2[i] === null) {
                 console.log('Sorry, something went wrong');
             } else if (obj1[i] === obj2[j]) {
                 console.log("Beverages is identical");
@@ -154,3 +154,34 @@ enterData - запитує два значення за допомогою promp
 calculateSum() повертає суму цих властивостей.
 calculateNSD() повертає результат пошуку НСД
 calculateNSK() повертає результат пошуку НСК*/
+
+function Calculator() {
+    this.enterData = (num1, num2) => {
+        this.num1 = Number(prompt("Enter first number:"));
+        this.num2 = Number(prompt("Enter second number:"));
+    }
+    this.calculateSum = function () {
+        console.log(this.num1 + this.num2);
+    }
+    this.calculateNSD = function () {
+        if (this.num1 === this.num2) {
+            return this.num1;
+        }
+        if (!this.num1) {
+            return this.num2;
+        }
+        if (!this.num2) {
+            return this.num1;
+        }
+        if (this.num1 % 2 === 0 && this.num2 % 2 === 0) {
+            return 2;
+        }
+        if (this.num1 % 2 === 0 && this.num2 % 2 !== 0) {
+            return this.num1 / 2;
+        }
+    }
+}
+const calc1 = new Calculator();
+calc1.enterData();
+calc1.calculateSum()
+calc1.calculateNSD();
