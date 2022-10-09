@@ -124,30 +124,33 @@ const dog1 = new Dog('Rex', 5, 'male');
 myOwnBind.bind(dog1)();
 
 //Cтворити функцію, котра приймає 2 параметри - об'єкти. Функція повинна перевіряти чи ці 2 обʼєкти абсолютно ідентичні та повертає результат у зрозумілому форматі
-const beverages1={
-    name:'majito',
-    kind:'non-alcoholic'
+const beverages1 = {
+    name: 'majito',
+    kind: 'non-alcoholic'
 }
-const beverages2={
-    name:'blue lagoon',
-    kind:'alcoholic'
+const beverages2 = {
+    name: 'blue lagoon',
+    kind: 'alcoholic'
 }
 
-const checkObj = function(obj1,obj2){
-    for(let i in obj1)
-    {
-        for (let j in obj2)
-        {
-            if(obj1[i]===obj2[j])
-            {
+const checkObj = function (obj1, obj2) {
+    for (let i in obj1) {
+
+        for (let j in obj2) {
+            if (isNaN(obj1[i])&& obj1[i] === undefined && obj1[i] === null && isNaN(obj2[i])&& obj2[i] === undefined && obj2[i] === null) {
+                console.log('Sorry, something went wrong');
+            } else if (obj1[i] === obj2[j]) {
                 console.log("Beverages is identical");
-            } else{
-                console.log("Beverages isn't identical");  
+            } else {
+                console.log("Beverages isn't identical");
             }
         }
     }
 }
-checkObj(beverages1,beverages2);
+checkObj(beverages1, beverages2);
 
-
-
+/*Створіть функцію-конструктор Calculator, який створює об’єкти з чотирма (або трьома) методами:
+enterData - запитує два значення за допомогою prompt і запам’ятовує їх у властивостях об’єкта.
+calculateSum() повертає суму цих властивостей.
+calculateNSD() повертає результат пошуку НСД
+calculateNSK() повертає результат пошуку НСК*/
