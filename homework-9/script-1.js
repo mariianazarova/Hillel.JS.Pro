@@ -133,7 +133,7 @@ const beverages2={
     kind:'alcoholic'
 }
 
-const checObj = function(obj1,obj2){
+const checkObj = function(obj1,obj2){
     for(let i in obj1)
     {
         for (let j in obj2)
@@ -147,4 +147,7 @@ const checObj = function(obj1,obj2){
         }
     }
 }
-checObj(beverages1,beverages2);
+checkObj(beverages1,beverages2);
+
+
+
