@@ -28,7 +28,9 @@ if (number > 1) {
 до 200 UAH - знижка 5%; якщо сума покупки перевищує 200 UAH - знижка 7% */
 const purchase = +prompt("Enter please sum of purchase (only number) UAH");
 let discount;
-if (purchase <= 100) {
+if (purchase <= 0) {
+    console.log("Sorry we cannot have negative purchase and zero purchase");
+} else if (purchase > 0 && purchase <= 100) {
     discount = (0.03 * purchase).toFixed(2);
     console.log(`Your discount is ${discount} UAH`);
 } else if (purchase > 100 && purchase <= 200) {
@@ -52,8 +54,8 @@ for (let i = 2; i <= 9; i++) {
 //Умова: один долар коштує 36,76 гривень. Вивести дані з розрахунком вартості 10, 20, 30... 100 доларів. 
 console.log("1 USD = 36.76 UAH");
 for (let i = 10; i <= 100; i += 10) {
-    const costDollar = (36.76 * i).toFixed(2);
-    console.log(`${i} USD = ${costDollar} UAH`);
+    const priceUSD = (36.76 * i).toFixed(2);
+    console.log(`${i} USD = ${priceUSD} UAH`);
 }
 
 /*Запитати у користувача 15 чисел і обрахувати, скільки серед них додатніх, від’ємних і нулів.
