@@ -37,19 +37,21 @@ Car.prototype.endRide = function () {
 function Sedan() {
     Car.call(this, arguments);
 }
-function HatchBack(){
-    Car.call(this,arguments);
-}
-function Universal(){
-    Car.call(this,arguments);
-}
-Sedan.prototype=Object.create(Car.prototype);
-HatchBack.prototype=Object.create(Car.prototype);
-Universal.prototype=Object.create(Car.prototype);
 
-const mySedan=new Sedan(15, 'diesel',3.2,'Lexus', 2014,1700,true);
-const myHatchBack=new HatchBack(15,'diesel',4,'Toyota Corolla',2004,1600,false);
-const myUniversal=new Universal(14,'diesel', 3,'Audi A6',2012,1300,true);
+function HatchBack() {
+    Car.call(this, arguments);
+}
+
+function Universal() {
+    Car.call(this, arguments);
+}
+Sedan.prototype = Object.create(Car.prototype);
+HatchBack.prototype = Object.create(Car.prototype);
+Universal.prototype = Object.create(Car.prototype);
+
+const mySedan = new Sedan(15, 'diesel', 3.2, 'Lexus', 2014, 1700, true);
+const myHatchBack = new HatchBack(15, 'diesel', 4, 'Toyota Corolla', 2004, 1600, false);
+const myUniversal = new Universal(14, 'diesel', 3, 'Audi A6', 2012, 1300, true);
 mySedan.startRide();
 mySedan.endRide();
 
@@ -59,4 +61,98 @@ myHatchBack.endRide();
 myUniversal.startRide();
 myUniversal.endRide();
 
+/*Створити функцію Дилер, яка приймає 1 аргумент - створений пунктом вище автомобіль (з його даними)
+Функція Дилер визначає скільки коштуватиме ремонт машини відштовхуючись від прейскуранту цін наведених у таблиці
+Дилер після ремонту має оновити справність конкретного авто до 100 та повідомити власнику ціну ремонту та наскільки автомобіль був пошкоджений*/
 
+function dealer(car) {
+    let priceRepair = 0;
+    let coefCarOfYear = 0;
+    let coefCarOfengineType = 0;
+    let coefCarOfMass = 0;
+    const price = 100 - car.maintence;
+    if (car instanceof HatchBack) {
+        if (car.madeYear > 2019 && car.madeYear < 2022) {
+            coefCarOfYear = 1.2;
+        } else if (car.madeYear > 2010 && car.madeYear < 2018) {
+            coefCarOfYear = 1.4;
+        } else if (car.madeYear > 2000 && car.madeYear < 2009) {
+            coefCarOfYear = 1.7;
+        } else if (car.madeYear > 1990 && car.madeYear < 1999) {
+            coefCarOfYear = 2;
+        } else if (car.madeYear < 1990) {
+            console.log("Sorry, we don't repair old car which year less 1990");
+        }
+        if (car.engineType === 'diesel') {
+            coefCarOfengineType = 2.2;
+        } else if (obj.engineType === 'petrol') {
+            coefCarOfengineType = 1.8;
+        }
+        if (car.mass > 800 && car.mass < 1100) {
+            coefCarOfMass = 1.5;
+        } else if (car.mass > 1101 && car.mass < 1400) {
+            coefCarOfMass = 1.7;
+        } else if (car.mass > 1401) {
+            coefCarOfMass = 2;
+        }
+        priceRepair = (price * 110 * (car.maintenance * (coefCarOfYear + coefCarOfengineType + coefCarOfMass))).toFixed(2);
+        console.log(`Price of repair car ${car.modelName} is ${priceRepair}`);
+    }
+    if (car instanceof Sedan) {
+        if (car.madeYear > 2019 && car.madeYear < 2022) {
+            coefCarOfYear = 1.5;
+        } else if (car.madeYear > 2010 && car.madeYear < 2018) {
+            coefCarOfYear = 1.8;
+        } else if (car.madeYear > 2000 && car.madeYear < 2009) {
+            coefCarOfYear = 2;
+        } else if (car.madeYear > 1990 && car.madeYear < 1999) {
+            coefCarOfYear = 2.6;
+        } else if (car.madeYear < 1990) {
+            console.log("Sorry, we don't repair old car which year less 1990");
+        }
+        if (car.engineType === 'diesel') {
+            coefCarOfengineType = 2.5;
+        } else if (obj.engineType === 'petrol') {
+            coefCarOfengineType = 2;
+        }
+        if (car.mass > 800 && car.mass < 1100) {
+            coefCarOfMass = 1.6;
+        } else if (car.mass > 1101 && car.mass < 1400) {
+            coefCarOfMass = 1.8;
+        } else if (car.mass > 1401) {
+            coefCarOfMass = 2.1;
+        }
+        priceRepair = (price * 125 * (car.maintenance * (coefCarOfYear + coefCarOfengineType + coefCarOfMass))).toFixed(2);
+        console.log(`Price of repair car ${car.modelName} is ${priceRepair}`);
+    }
+    if (car instanceof Universal) {
+        if (car.madeYear > 2019 && car.madeYear < 2022) {
+            coefCarOfYear = 2;
+        } else if (car.madeYear > 2010 && car.madeYear < 2018) {
+            coefCarOfYear = 2.2;
+        } else if (car.madeYear > 2000 && car.madeYear < 2009) {
+            coefCarOfYear = 2.5;
+        } else if (car.madeYear > 1990 && car.madeYear < 1999) {
+            coefCarOfYear = 3;
+        } else if (car.madeYear < 1990) {
+            console.log("Sorry, we don't repair old car which year less 1990");
+        }
+        if (car.engineType === 'diesel') {
+            coefCarOfengineType = 2.9;
+        } else if (obj.engineType === 'petrol') {
+            coefCarOfengineType = 2.4;
+        }
+        if (car.mass > 800 && car.mass < 1100) {
+            coefCarOfMass = 1.7;
+        } else if (car.mass > 1101 && car.mass < 1400) {
+            coefCarOfMass = 1.9;
+        } else if (car.mass > 1401) {
+            coefCarOfMass = 2.2;
+        }
+        priceRepair = (price * 130 * (car.maintenance * (coefCarOfYear + coefCarOfengineType + coefCarOfMass))).toFixed(2);
+        console.log(`Price of repair car ${car.modelName} is ${priceRepair}`);
+    }
+}
+dealer(myHatchBack);
+dealer(mySedan);
+dealer(myUniversal);
