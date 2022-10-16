@@ -85,7 +85,7 @@ function dealer(car) {
         }
         if (car.engineType === 'diesel') {
             coefCarOfengineType = 2.2;
-        } else if (obj.engineType === 'petrol') {
+        } else if (car.engineType === 'petrol') {
             coefCarOfengineType = 1.8;
         }
         if (car.mass > 800 && car.mass < 1100) {
@@ -112,7 +112,7 @@ function dealer(car) {
         }
         if (car.engineType === 'diesel') {
             coefCarOfengineType = 2.5;
-        } else if (obj.engineType === 'petrol') {
+        } else if (car.engineType === 'petrol') {
             coefCarOfengineType = 2;
         }
         if (car.mass > 800 && car.mass < 1100) {
@@ -139,7 +139,7 @@ function dealer(car) {
         }
         if (car.engineType === 'diesel') {
             coefCarOfengineType = 2.9;
-        } else if (obj.engineType === 'petrol') {
+        } else if (car.engineType === 'petrol') {
             coefCarOfengineType = 2.4;
         }
         if (car.mass > 800 && car.mass < 1100) {
