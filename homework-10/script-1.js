@@ -68,7 +68,7 @@ myUniversal.endRide();
 function dealer(car) {
     let priceRepair = 0;
     let coefCarOfYear = 0;
-    let coefCarOfengineType = 0;
+    let coefCarOfEngineType = 0;
     let coefCarOfMass = 0;
     const price = 100 - car.maintence;
     if (car instanceof HatchBack) {
@@ -84,9 +84,9 @@ function dealer(car) {
             console.log("Sorry, we don't repair old car which year less 1990");
         }
         if (car.engineType === 'diesel') {
-            coefCarOfengineType = 2.2;
+            coefCarOfEngineType = 2.2;
         } else if (car.engineType === 'petrol') {
-            coefCarOfengineType = 1.8;
+            coefCarOfEngineType = 1.8;
         }
         if (car.mass > 800 && car.mass < 1100) {
             coefCarOfMass = 1.5;
@@ -95,7 +95,7 @@ function dealer(car) {
         } else if (car.mass > 1401) {
             coefCarOfMass = 2;
         }
-        priceRepair = (110 * price * (car.maintenance * (coefCarOfYear + coefCarOfengineType + coefCarOfMass))).toFixed(2);
+        priceRepair = (110 * price * (car.maintenance * (coefCarOfYear + coefCarOfEngineType + coefCarOfMass))).toFixed(2);
         console.log(`Price of repair car ${car.modelName} is ${priceRepair}`);
     }
     if (car instanceof Sedan) {
@@ -111,9 +111,9 @@ function dealer(car) {
             console.log("Sorry, we don't repair old car which year less 1990");
         }
         if (car.engineType === 'diesel') {
-            coefCarOfengineType = 2.5;
+            coefCarOfEngineType = 2.5;
         } else if (car.engineType === 'petrol') {
-            coefCarOfengineType = 2;
+            coefCarOfEngineType = 2;
         }
         if (car.mass > 800 && car.mass < 1100) {
             coefCarOfMass = 1.6;
@@ -122,7 +122,7 @@ function dealer(car) {
         } else if (car.mass > 1401) {
             coefCarOfMass = 2.1;
         }
-        priceRepair = (125 * price * (car.maintenance * (coefCarOfYear + coefCarOfengineType + coefCarOfMass))).toFixed(2);
+        priceRepair = (125 * price * (car.maintenance * (coefCarOfYear + coefCarOfEngineType + coefCarOfMass))).toFixed(2);
         console.log(`Price of repair car ${car.modelName} is ${priceRepair}`);
     }
     if (car instanceof Universal) {
@@ -138,9 +138,9 @@ function dealer(car) {
             console.log("Sorry, we don't repair old car which year less 1990");
         }
         if (car.engineType === 'diesel') {
-            coefCarOfengineType = 2.9;
+            coefCarOfEngineType = 2.9;
         } else if (car.engineType === 'petrol') {
-            coefCarOfengineType = 2.4;
+            coefCarOfEngineType = 2.4;
         }
         if (car.mass > 800 && car.mass < 1100) {
             coefCarOfMass = 1.7;
@@ -149,7 +149,7 @@ function dealer(car) {
         } else if (car.mass > 1401) {
             coefCarOfMass = 2.2;
         }
-        priceRepair = (130 * price * (car.maintenance * (coefCarOfYear + coefCarOfengineType + coefCarOfMass))).toFixed(2);
+        priceRepair = (130 * price * (car.maintenance * (coefCarOfYear + coefCarOfEngineType + coefCarOfMass))).toFixed(2);
         console.log(`Price of repair car ${car.modelName} is ${priceRepair}`);
     }
 }
