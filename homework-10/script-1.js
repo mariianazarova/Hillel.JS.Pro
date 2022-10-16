@@ -95,7 +95,7 @@ function dealer(car) {
         } else if (car.mass > 1401) {
             coefCarOfMass = 2;
         }
-        priceRepair = (price * 110 * (car.maintenance * (coefCarOfYear + coefCarOfengineType + coefCarOfMass))).toFixed(2);
+        priceRepair = (110 * price * (car.maintenance * (coefCarOfYear + coefCarOfengineType + coefCarOfMass))).toFixed(2);
         console.log(`Price of repair car ${car.modelName} is ${priceRepair}`);
     }
     if (car instanceof Sedan) {
@@ -122,7 +122,7 @@ function dealer(car) {
         } else if (car.mass > 1401) {
             coefCarOfMass = 2.1;
         }
-        priceRepair = (price * 125 * (car.maintenance * (coefCarOfYear + coefCarOfengineType + coefCarOfMass))).toFixed(2);
+        priceRepair = (125 * price * (car.maintenance * (coefCarOfYear + coefCarOfengineType + coefCarOfMass))).toFixed(2);
         console.log(`Price of repair car ${car.modelName} is ${priceRepair}`);
     }
     if (car instanceof Universal) {
@@ -149,7 +149,7 @@ function dealer(car) {
         } else if (car.mass > 1401) {
             coefCarOfMass = 2.2;
         }
-        priceRepair = (price * 130 * (car.maintenance * (coefCarOfYear + coefCarOfengineType + coefCarOfMass))).toFixed(2);
+        priceRepair = (130 * price * (car.maintenance * (coefCarOfYear + coefCarOfengineType + coefCarOfMass))).toFixed(2);
         console.log(`Price of repair car ${car.modelName} is ${priceRepair}`);
     }
 }
