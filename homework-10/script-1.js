@@ -71,7 +71,7 @@ function dealer(car) {
     let coefCarOfEngineType = 0;
     let coefCarOfMass = 0;
     const price = 100 - car.maintence;
-    if (car instanceof HatchBack) {
+    if (car instanceof HatchBack===true) {
         if (car.madeYear > 2019 && car.madeYear < 2022) {
             coefCarOfYear = 1.2;
         } else if (car.madeYear > 2010 && car.madeYear < 2018) {
@@ -95,10 +95,10 @@ function dealer(car) {
         } else if (car.mass > 1401) {
             coefCarOfMass = 2;
         }
-        priceRepair = (110 * price * (car.maintenance * (coefCarOfYear + coefCarOfEngineType + coefCarOfMass))).toFixed(2);
+        priceRepair = (110 * price * (coefCarOfYear + coefCarOfEngineType + coefCarOfMass)).toFixed(2);
         console.log(`Price of repair car ${car.modelName} is ${priceRepair}`);
     }
-    if (car instanceof Sedan) {
+    if (car instanceof Sedan===true) {
         if (car.madeYear > 2019 && car.madeYear < 2022) {
             coefCarOfYear = 1.5;
         } else if (car.madeYear > 2010 && car.madeYear < 2018) {
@@ -122,10 +122,10 @@ function dealer(car) {
         } else if (car.mass > 1401) {
             coefCarOfMass = 2.1;
         }
-        priceRepair = (125 * price * (car.maintenance * (coefCarOfYear + coefCarOfEngineType + coefCarOfMass))).toFixed(2);
+        priceRepair = (125 * price * (coefCarOfYear + coefCarOfEngineType + coefCarOfMass)).toFixed(2);
         console.log(`Price of repair car ${car.modelName} is ${priceRepair}`);
     }
-    if (car instanceof Universal) {
+    if (car instanceof Universal===true) {
         if (car.madeYear > 2019 && car.madeYear < 2022) {
             coefCarOfYear = 2;
         } else if (car.madeYear > 2010 && car.madeYear < 2018) {
@@ -149,7 +149,7 @@ function dealer(car) {
         } else if (car.mass > 1401) {
             coefCarOfMass = 2.2;
         }
-        priceRepair = (130 * price * (car.maintenance * (coefCarOfYear + coefCarOfEngineType + coefCarOfMass))).toFixed(2);
+        priceRepair = (130 * price * (coefCarOfYear + coefCarOfEngineType + coefCarOfMass)).toFixed(2);
         console.log(`Price of repair car ${car.modelName} is ${priceRepair}`);
     }
 }
