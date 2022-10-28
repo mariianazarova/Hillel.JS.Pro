@@ -1,0 +1,13 @@
+body {
+    font-family: sans-serif;
+}
+.even {
+    background: #a7a7a7;
+}
+ul {
+    list-style: none;
+}
+.nocertificate{
+    color: red;
+    font-weight: 900;
+}
