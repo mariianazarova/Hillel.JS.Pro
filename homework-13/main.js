@@ -30,41 +30,39 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-const selectPhoneBrand=document.querySelector('.phone-brand');
-const selectPhoneRam=document.querySelector('.phone-ram');
-const selectPhoneBuiltInMemory=document.querySelector('.phone-built-in-memory');
-document.querySelector('.phone-calc').addEventListener('click',()=>{
-let sumPhonePrice=0;
-if(selectPhoneBrand.value==='Iphone')
-{
-    sumPhonePrice+=35000;
-} else if(selectPhoneBrand.value==='Samsung'){
-    sumPhonePrice+=15000;
-} else if (selectPhoneBrand.value==='Pixel'){
-    sumPhonePrice+=10000;
-} else if (selectPhoneBrand.value==='OnePlus')
-{
-    sumPhonePrice+=14000;
-}
-if(selectPhoneRam.value==='2'){
-    sumPhonePrice+=500;
-} else if (selectPhoneRam.value==='4'){
-    sumPhonePrice+=800;
-} else if (selectPhoneRam.value==='6'){
-    sumPhonePrice+=1000;
-} else if (selectPhoneRam.value==='8'){
-    sumPhonePrice+=1200;
-}
-if (selectPhoneBuiltInMemory.value==='64'){
-    sumPhonePrice+=700;  
-} else if (selectPhoneBuiltInMemory.value==='128'){
-    sumPhonePrice+=900;
-} else if (selectPhoneBuiltInMemory.value==='256'){
-    sumPhonePrice+=1300;
-} else if (selectPhoneBuiltInMemory.value==='512'){
-    sumPhonePrice+=2000;
-}
-alert (`${selectPhoneBrand.value} cost ${sumPhonePrice} UAH`);
-})
+    const selectPhoneBrand = document.querySelector('.phone-brand');
+    const selectPhoneRam = document.querySelector('.phone-ram');
+    const selectPhoneBuiltInMemory = document.querySelector('.phone-built-in-memory');
+    document.querySelector('.phone-calc').addEventListener('click', () => {
+        let sumPhonePrice = 0;
+        if (selectPhoneBrand.value === 'Iphone') {
+            sumPhonePrice += 35000;
+        } else if (selectPhoneBrand.value === 'Samsung') {
+            sumPhonePrice += 15000;
+        } else if (selectPhoneBrand.value === 'Pixel') {
+            sumPhonePrice += 10000;
+        } else if (selectPhoneBrand.value === 'OnePlus') {
+            sumPhonePrice += 14000;
+        }
+        if (selectPhoneRam.value === '2') {
+            sumPhonePrice += 500;
+        } else if (selectPhoneRam.value === '4') {
+            sumPhonePrice += 800;
+        } else if (selectPhoneRam.value === '6') {
+            sumPhonePrice += 1000;
+        } else if (selectPhoneRam.value === '8') {
+            sumPhonePrice += 1200;
+        }
+        if (selectPhoneBuiltInMemory.value === '64') {
+            sumPhonePrice += 700;
+        } else if (selectPhoneBuiltInMemory.value === '128') {
+            sumPhonePrice += 900;
+        } else if (selectPhoneBuiltInMemory.value === '256') {
+            sumPhonePrice += 1300;
+        } else if (selectPhoneBuiltInMemory.value === '512') {
+            sumPhonePrice += 2000;
+        }
+        alert(`${selectPhoneBrand.value} cost ${sumPhonePrice} UAH`);
+    })
 
 })
