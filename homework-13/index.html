@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+
+<body>
+    <form id="new-form">
+        <input type="number" class="sec-input input2"
+            placeholder="Enter seconds left in Russia before her disappears" />
+        <input type="submit" class="sec-submit submit2" value="Start timeout" />
+    </form>
+    <hr class="mg-top">
+    <form id="new-form-datepicker" class="mg-top">
+        <input type="date" class="date-input input2" placeholder="Choose data" />
+        <input type="submit" class="date-submit submit2" value="Start Campaign" />
+    </form>
+    <hr class="mg-top">
+    <div class="mg-top">
+        <p> Select phone brand</p>
+        <select class="phone-brand phone">
+            <option value="Iphone">Iphone</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Pixel">Pixel</option>
+            <option value="OnePlus">OnePlus</option>
+        </select>
+    </div>
+    <div class="mg-top">
+        <p> Select amount of RAM</p>
+        <select class="phone-ram phone">
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="6">6</option>
+            <option value="8">8</option>
+        </select>
+    </div>
+    <div class="mg-top">
+        <p> Select amount of built-in memory</p>
+        <select class="phone-built-in-memory phone">
+            <option value="64">64</option>
+            <option value="128">128</option>
+            <option value="256">256</option>
+            <option value="512">512</option>
+        </select>
+    </div>
+    <button class="submit2 mg-top phone-calc">Calculate</button>
+    <script src="./main.js"></script>
+</body>
+
+</html>
