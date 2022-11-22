@@ -23,13 +23,14 @@ window.addEventListener('DOMContentLoaded', () => {
         if (inputCity.value === '') {
             resultWeather.innerHTML = `Oops, please enter city.`;
         } else {
+            let cityExist = false;
             for (let city in dataCity) {
                 if (inputCity.value === city) {
                     xhttp.open('GET', `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${dataCity[city]}?apikey=${API_KEY}`);
-                } else {
-                    resultWeather.innerHTML = `Sorry, we cannot show the weather of your city.`;
+                    cityExist = true;
                 }
             }
+            if(cityExist===true){
             xhttp.send();
             xhttp.onload = function () {
                 if (this.status === 200) {
@@ -67,6 +68,11 @@ window.addEventListener('DOMContentLoaded', () => {
                     resultWeather.innerHTML = `Somthing is wrong`;
                 }
             }
+        } 
+        else {
+            resultWeather.innerHTML = `Sorry, we cannot show the weather of your city.`;
         }
+    }
+    
     })
 })
