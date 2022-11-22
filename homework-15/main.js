@@ -30,49 +30,48 @@ window.addEventListener('DOMContentLoaded', () => {
                     cityExist = true;
                 }
             }
-            if(cityExist===true){
-            xhttp.send();
-            xhttp.onload = function () {
-                if (this.status === 200) {
-                    const result = JSON.parse(this.response);
-                    const weather = result.DailyForecasts;
+            if (cityExist === true) {
+                xhttp.send();
+                xhttp.onload = function () {
+                    if (this.status === 200) {
+                        const result = JSON.parse(this.response);
+                        const weather = result.DailyForecasts;
 
-                    for (let item in weather) {
-                        const data = document.createElement("p");
-                        data.innerHTML = new Date(weather[item].Date).toDateString();
-                        wrapper.append(data);
+                        for (let item in weather) {
+                            const data = document.createElement("p");
+                            data.innerHTML = new Date(weather[item].Date).toDateString();
+                            wrapper.append(data);
 
-                        const day = document.createElement("li");
-                        day.innerHTML = `Day: ${weather[item].Day.IconPhrase}.`;
-                        wrapper.append(day);
+                            const day = document.createElement("li");
+                            day.innerHTML = `Day: ${weather[item].Day.IconPhrase}.`;
+                            wrapper.append(day);
 
-                        const night = document.createElement("li");
-                        if (weather[item].Night.HasPrecipitation === false) {
-                            night.innerHTML = `Night: ${weather[item].Night.IconPhrase}`;
-                        } else {
-                            night.innerHTML = `Night: ${weather[item].Night.IconPhrase}. ${weather[item].Night.PrecipitationIntensity} ${weather[item].Night.PrecipitationType}.`;
+                            const night = document.createElement("li");
+                            if (weather[item].Night.HasPrecipitation === false) {
+                                night.innerHTML = `Night: ${weather[item].Night.IconPhrase}`;
+                            } else {
+                                night.innerHTML = `Night: ${weather[item].Night.IconPhrase}. ${weather[item].Night.PrecipitationIntensity} ${weather[item].Night.PrecipitationType}.`;
+                            }
+                            wrapper.append(night);
+
+                            const temperatureMin = document.createElement("li");
+                            temperatureMin.innerHTML = `Temperature min: ${(((+weather[item].Temperature.Minimum.Value)-32)*5/9).toFixed(1)}°C`;
+                            wrapper.append(temperatureMin);
+                            const temperatureMax = document.createElement("li");
+                            temperatureMax.innerHTML = `Temperature max: ${(((+weather[item].Temperature.Maximum.Value)-32)*5/9).toFixed(1)}°C`;
+                            wrapper.append(temperatureMax);
+
+                            const line = document.createElement("hr");
+                            wrapper.append(line);
                         }
-                        wrapper.append(night);
-
-                        const temperatureMin = document.createElement("li");
-                        temperatureMin.innerHTML = `Temperature min: ${(((+weather[item].Temperature.Minimum.Value)-32)*5/9).toFixed(1)}°C`;
-                        wrapper.append(temperatureMin);
-                        const temperatureMax = document.createElement("li");
-                        temperatureMax.innerHTML = `Temperature max: ${(((+weather[item].Temperature.Maximum.Value)-32)*5/9).toFixed(1)}°C`;
-                        wrapper.append(temperatureMax);
-
-                        const line = document.createElement("hr");
-                        wrapper.append(line);
+                    } else {
+                        resultWeather.innerHTML = `Somthing is wrong`;
                     }
-                } else {
-                    resultWeather.innerHTML = `Somthing is wrong`;
                 }
+            } else {
+                resultWeather.innerHTML = `Sorry, we cannot show the weather of your city.`;
             }
-        } 
-        else {
-            resultWeather.innerHTML = `Sorry, we cannot show the weather of your city.`;
         }
-    }
-    
+
     })
 })
