@@ -29,8 +29,7 @@ button {
     color: #ffffff;
 }
 
-.input2,
-.phone {
+.input2 {
     flex: 1 1 0%;
     padding: 0.5rem;
     border: 1px solid #858587;
@@ -66,4 +65,10 @@ button {
 
 .mg-top {
     margin-top: 1.5rem;
+}
+li{
+    list-style: none;
+}
+hr{
+    margin-bottom: 1.2rem;
 }
