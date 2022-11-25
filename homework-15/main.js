@@ -36,7 +36,6 @@ window.addEventListener('DOMContentLoaded', () => {
                     if (this.status === 200) {
                         const result = JSON.parse(this.response);
                         const weather = result.DailyForecasts;
-
                         for (let item in weather) {
                             const data = document.createElement("p");
                             data.innerHTML = new Date(weather[item].Date).toDateString();
@@ -60,10 +59,9 @@ window.addEventListener('DOMContentLoaded', () => {
                             const temperatureMax = document.createElement("li");
                             temperatureMax.innerHTML = `Temperature max: ${(((+weather[item].Temperature.Maximum.Value)-32)*5/9).toFixed(1)}°C`;
                             wrapper.append(temperatureMax);
-
                             const line = document.createElement("hr");
                             wrapper.append(line);
-                            inputCity.value="";
+                            inputCity.value = "";
                         }
                     } else {
                         resultWeather.innerHTML = `Somthing is wrong`;
@@ -71,7 +69,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
             } else {
                 resultWeather.innerHTML = `Sorry, we cannot show the weather of your city.`;
-                inputCity.value="";
+                inputCity.value = "";
             }
         }
 
