@@ -63,6 +63,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
                             const line = document.createElement("hr");
                             wrapper.append(line);
+                            inputCity.value="";
                         }
                     } else {
                         resultWeather.innerHTML = `Somthing is wrong`;
@@ -70,6 +71,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
             } else {
                 resultWeather.innerHTML = `Sorry, we cannot show the weather of your city.`;
+                inputCity.value="";
             }
         }
 
