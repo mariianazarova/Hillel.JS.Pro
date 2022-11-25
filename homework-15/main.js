@@ -1,6 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
     const inputCity = document.querySelector('.city-input');
     const resultWeather = document.querySelector('.result-weather');
+    const weatherWrapper = document.querySelector('.weather-wrapper');
     const API_KEY = 'bJO51oGLQmzeNrcEjMXl8NNsAcA0QSXs';
     const wrapper = document.getElementById('wrapper');
     const dataCity = {
@@ -36,14 +37,16 @@ window.addEventListener('DOMContentLoaded', () => {
                     if (this.status === 200) {
                         const result = JSON.parse(this.response);
                         const weather = result.DailyForecasts;
+
                         for (let item in weather) {
+                            weatherWrapper.innerHTML = "";
                             const data = document.createElement("p");
                             data.innerHTML = new Date(weather[item].Date).toDateString();
-                            wrapper.append(data);
+                            wrapper.weather - wrapper.append(data);
 
                             const day = document.createElement("li");
                             day.innerHTML = `Day: ${weather[item].Day.IconPhrase}.`;
-                            wrapper.append(day);
+                            wrapper.weather - wrapper.append(day);
 
                             const night = document.createElement("li");
                             if (weather[item].Night.HasPrecipitation === false) {
@@ -51,17 +54,18 @@ window.addEventListener('DOMContentLoaded', () => {
                             } else {
                                 night.innerHTML = `Night: ${weather[item].Night.IconPhrase}. ${weather[item].Night.PrecipitationIntensity} ${weather[item].Night.PrecipitationType}.`;
                             }
-                            wrapper.append(night);
+                            wrapper.weather - wrapper.append(night);
 
                             const temperatureMin = document.createElement("li");
                             temperatureMin.innerHTML = `Temperature min: ${(((+weather[item].Temperature.Minimum.Value)-32)*5/9).toFixed(1)}°C`;
-                            wrapper.append(temperatureMin);
+                            wrapper.weather - wrapper.append(temperatureMin);
                             const temperatureMax = document.createElement("li");
                             temperatureMax.innerHTML = `Temperature max: ${(((+weather[item].Temperature.Maximum.Value)-32)*5/9).toFixed(1)}°C`;
-                            wrapper.append(temperatureMax);
+                            wrapper.weather - wrapper.append(temperatureMax);
                             const line = document.createElement("hr");
-                            wrapper.append(line);
+                            wrapper.weather - wrapper.append(line);
                             inputCity.value = "";
+
                         }
                     } else {
                         resultWeather.innerHTML = `Somthing is wrong`;
