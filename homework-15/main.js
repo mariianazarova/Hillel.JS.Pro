@@ -1,9 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
     const inputCity = document.querySelector('.city-input');
-    const resultWeather = document.querySelector('.result-weather');
-    const weatherWrapper = document.querySelector('.weather-wrapper');
+    const weatherWrapper = document.getElementById('weather-wrapper');
     const API_KEY = 'bJO51oGLQmzeNrcEjMXl8NNsAcA0QSXs';
-    const wrapper = document.getElementById('wrapper');
     const dataCity = {
         Lviv: 324561,
         Kyiv: 324505,
@@ -21,32 +19,36 @@ window.addEventListener('DOMContentLoaded', () => {
     const xhttp = new XMLHttpRequest();
     document.querySelector('.weather-submit').addEventListener('click', (event) => {
         event.preventDefault();
-        if (inputCity.value === '') {
-            resultWeather.innerHTML = `Oops, please enter city.`;
+        weatherWrapper.innerHTML = "";
+
+        if (!inputCity.value) {
+            weatherWrapper.innerHTML = "Oops, please enter city.";
         } else {
             let cityExist = false;
             for (let city in dataCity) {
-                if (inputCity.value === city) {
+                if (inputCity.value.toLowerCase() === city.toLowerCase()) {
                     xhttp.open('GET', `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${dataCity[city]}?apikey=${API_KEY}`);
                     cityExist = true;
                 }
             }
             if (cityExist === true) {
                 xhttp.send();
+                weatherWrapper.innerHTML = "Loading...";
                 xhttp.onload = function () {
                     if (this.status === 200) {
                         const result = JSON.parse(this.response);
                         const weather = result.DailyForecasts;
 
+                        weatherWrapper.innerHTML = "";
+
                         for (let item in weather) {
-                            weatherWrapper.innerHTML = "";
+                            const forecastItem = document.createElement("div");
+                            forecastItem.classList.add("forecast-item");
                             const data = document.createElement("p");
                             data.innerHTML = new Date(weather[item].Date).toDateString();
-                            wrapper.weather - wrapper.append(data);
 
                             const day = document.createElement("li");
                             day.innerHTML = `Day: ${weather[item].Day.IconPhrase}.`;
-                            wrapper.weather - wrapper.append(day);
 
                             const night = document.createElement("li");
                             if (weather[item].Night.HasPrecipitation === false) {
@@ -54,28 +56,34 @@ window.addEventListener('DOMContentLoaded', () => {
                             } else {
                                 night.innerHTML = `Night: ${weather[item].Night.IconPhrase}. ${weather[item].Night.PrecipitationIntensity} ${weather[item].Night.PrecipitationType}.`;
                             }
-                            wrapper.weather - wrapper.append(night);
 
                             const temperatureMin = document.createElement("li");
                             temperatureMin.innerHTML = `Temperature min: ${(((+weather[item].Temperature.Minimum.Value)-32)*5/9).toFixed(1)}°C`;
-                            wrapper.weather - wrapper.append(temperatureMin);
+
                             const temperatureMax = document.createElement("li");
                             temperatureMax.innerHTML = `Temperature max: ${(((+weather[item].Temperature.Maximum.Value)-32)*5/9).toFixed(1)}°C`;
-                            wrapper.weather - wrapper.append(temperatureMax);
-                            const line = document.createElement("hr");
-                            wrapper.weather - wrapper.append(line);
-                            inputCity.value = "";
 
+                            const line = document.createElement("hr");
+
+
+                            forecastItem.append(data);
+                            forecastItem.append(day);
+                            forecastItem.append(night);
+                            forecastItem.append(temperatureMin);
+                            forecastItem.append(temperatureMax);
+                            forecastItem.append(line);
+
+                            weatherWrapper.append(forecastItem);
+                            inputCity.value = "";
                         }
                     } else {
-                        resultWeather.innerHTML = `Somthing is wrong`;
+                        weatherWrapper.innerHTML = "Something went wrong";
                     }
                 }
             } else {
-                resultWeather.innerHTML = `Sorry, we cannot show the weather of your city.`;
+                weatherWrapper.innerHTML = "Sorry, we cannot show the weather of your city.";
                 inputCity.value = "";
             }
         }
-
     })
 })
