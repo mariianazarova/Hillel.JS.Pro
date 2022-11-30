@@ -19,6 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const resp = await fetch(url);
         const respData = await resp.json();
         showMovies(respData);
+        displayPagination(respData.totalResults, rows);
         
     }
     async function ShowPage(page) {
