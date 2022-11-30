@@ -1,78 +1,136 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const inputCity = document.querySelector('.city-input');
-    const resultWeather = document.querySelector('.result-weather');
-    const API_KEY = 'bJO51oGLQmzeNrcEjMXl8NNsAcA0QSXs';
-    const wrapper = document.getElementById('wrapper');
-    const dataCity = {
-        Lviv: 324561,
-        Kyiv: 324505,
-        Kharkiv: 323903,
-        Chernihiv: 322162,
-        Odesa: 325343,
-        Mariupol: 323037,
-        Poltava: 325523,
-        Zhytomyr: 326609,
-        Cherkasy: 321985,
-        London: 328328,
-        Warsaw: 274663,
-        NewYork: 349727,
-    };
-    const xhttp = new XMLHttpRequest();
-    document.querySelector('.weather-submit').addEventListener('click', (event) => {
-        event.preventDefault();
-        if (inputCity.value === '') {
-            resultWeather.innerHTML = `Oops, please enter city.`;
-        } else {
-            let cityExist = false;
-            for (let city in dataCity) {
-                if (inputCity.value === city) {
-                    xhttp.open('GET', `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${dataCity[city]}?apikey=${API_KEY}`);
-                    cityExist = true;
-                }
-            }
-            if (cityExist === true) {
-                xhttp.send();
-                xhttp.onload = function () {
-                    if (this.status === 200) {
-                        const result = JSON.parse(this.response);
-                        const weather = result.DailyForecasts;
+    const API_KEY = "f67b2711";
+    const form = document.querySelector("form");
+    const search = document.querySelector(".header-search");
+    const moviesEl = document.querySelector(".movies");
+    let currentPage = 1;
+    let rows = 10;
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const API_URL = `http://www.omdbapi.com/?apikey=f67b2711&s=${search.value}`;
 
-                        for (let item in weather) {
-                            const data = document.createElement("p");
-                            data.innerHTML = new Date(weather[item].Date).toDateString();
-                            wrapper.append(data);
-
-                            const day = document.createElement("li");
-                            day.innerHTML = `Day: ${weather[item].Day.IconPhrase}.`;
-                            wrapper.append(day);
-
-                            const night = document.createElement("li");
-                            if (weather[item].Night.HasPrecipitation === false) {
-                                night.innerHTML = `Night: ${weather[item].Night.IconPhrase}`;
-                            } else {
-                                night.innerHTML = `Night: ${weather[item].Night.IconPhrase}. ${weather[item].Night.PrecipitationIntensity} ${weather[item].Night.PrecipitationType}.`;
-                            }
-                            wrapper.append(night);
-
-                            const temperatureMin = document.createElement("li");
-                            temperatureMin.innerHTML = `Temperature min: ${(((+weather[item].Temperature.Minimum.Value)-32)*5/9).toFixed(1)}°C`;
-                            wrapper.append(temperatureMin);
-                            const temperatureMax = document.createElement("li");
-                            temperatureMax.innerHTML = `Temperature max: ${(((+weather[item].Temperature.Maximum.Value)-32)*5/9).toFixed(1)}°C`;
-                            wrapper.append(temperatureMax);
-
-                            const line = document.createElement("hr");
-                            wrapper.append(line);
-                            
-                        }
-                    } else {
-                        resultWeather.innerHTML = `Somthing is wrong`;
-                    }
-                }
-            } else {
-                resultWeather.innerHTML = `Sorry, we cannot show the weather of your city.`;
-            }
-        }
+        getMovies(API_URL);
+        search.value = "";
 
     })
+
+
+    async function getMovies(url) {
+        const resp = await fetch(url);
+        const respData = await resp.json();
+        showMovies(respData);
+        displayPagination(respData.totalResults, rows);
+    }
+    async function getPage(page) {
+        const resp = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${search.value}&page=${page}`);
+        const respData = await resp.json();
+        showMovies(respData);
+    }
+
+    function showMovies(data) {
+        moviesEl.innerHTML = "";
+        if (!data.Search) {
+            moviesEl.innerHTML = "Sorry we cannot find movie";
+        }
+        currentPage--;
+        const start = rows * currentPage;
+        const end = start + rows;
+        const paginatedData = data.Search.slice(start, end);
+        paginatedData.forEach(movie => {
+            const movieEl = document.createElement("div");
+            movieEl.classList.add("movie");
+            movieEl.innerHTML = `
+        <div class="movie">
+        <div class="movie-cover-inner">
+            <img src="${movie.Poster}"
+                class="movie-cover" alt="${movie.Title}" />
+            <div class="movie-cover-darkened">
+            </div>
+        </div>
+        <div class="movie-info">
+            <div class="movie-title">${movie.Title}</div>
+            <div class="movie-year">${movie.Year}</div>
+        </div>
+    </div>`;
+            movieEl.addEventListener("click", () => openModal(movie.imdbID));
+            moviesEl.appendChild(movieEl);
+
+        });
+
+    }
+    const modalEl = document.querySelector(".modal");
+    async function openModal(id) {
+        const resp = await fetch("http://www.omdbapi.com/?apikey=f67b2711&i=" + id);
+        const respData = await resp.json();
+        modalEl.classList.add("modal-show");
+        modalEl.innerHTML = `
+<div class="modal-card">
+    <img class="modal-movie-backdrop" src="${respData.Poster}" alt="">
+    <h2>
+        <span class="modal-movie-title">${respData.Title}</span>
+    </h2>
+    <ul class="modal-movie-info">
+        <li class="modal-movie-year">Year: ${respData.Year}</li>
+        <li class="modal-movie-genre">Genre: ${respData.Genre}</li>
+        <li class="modal-movie-runtime">Runtime: ${respData.Runtime}</li>
+        <li>Website <a class="modal-movie-website" href="${respData.Website}">${respData.Website}</a></li>
+        <li class="modal-movie-plot">Plot: ${respData.Plot}</li>
+    </ul>
+    <button type="button" class="modal-button-close">Close</button>
+</div>
+`
+        const btnClose = document.querySelector(".modal-button-close");
+        btnClose.addEventListener("click", () => closeModal());
+    }
+
+    function closeModal() {
+        modalEl.classList.remove("modal-show");
+        document.body.classList.remove("stop-scrolling");
+    }
+    window.addEventListener("click", (e) => {
+        if (e.target === modalEl) {
+            closeModal();
+        }
+    })
+    window.addEventListener("keydown", (e) => {
+        if (e.keyCode === 27) {
+            closeModal();
+        }
+    })
+
+    function displayPagination(totalResults, rowPerPage) {
+        const paginationEl = document.querySelector('.pagination');
+        const pagesCount = Math.ceil(totalResults / rowPerPage);
+        const ulEl = document.createElement("ul");
+        ulEl.classList.add('pagination-list');
+
+        for (let i = 0; i < pagesCount; i++) {
+            const liEl = displayPaginationBtn(i + 1);
+            ulEl.appendChild(liEl);
+        }
+        paginationEl.appendChild(ulEl);
+        paginationEl="";
+    }
+
+    function displayPaginationBtn(page) {
+        const liEl = document.createElement("li");
+        liEl.classList.add('pagination-item')
+        liEl.innerText = page
+
+        if (currentPage === page) liEl.classList.add('pagination-item-active');
+
+        liEl.addEventListener('click', () => {
+            currentPage = page;
+
+            getPage(page);
+
+            let currentItemLi = document.querySelector('li.pagination-item-active');
+            currentItemLi.classList.remove('pagination-item-active');
+
+            liEl.classList.add('pagination-item-active');
+        })
+
+        return liEl;
+    }
+
 })
