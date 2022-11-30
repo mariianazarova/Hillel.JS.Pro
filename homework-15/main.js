@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     cityExist = true;
                 }
             }
-            if (cityExist === true) {
+            if (cityExist) {
                 xhttp.send();
                 weatherWrapper.innerHTML = "Loading...";
                 xhttp.onload = function () {
@@ -51,7 +51,7 @@ window.addEventListener('DOMContentLoaded', () => {
                             day.innerHTML = `Day: ${weather[item].Day.IconPhrase}.`;
 
                             const night = document.createElement("li");
-                            if (weather[item].Night.HasPrecipitation === false) {
+                            if (!weather[item].Night.HasPrecipitation) {
                                 night.innerHTML = `Night: ${weather[item].Night.IconPhrase}`;
                             } else {
                                 night.innerHTML = `Night: ${weather[item].Night.IconPhrase}. ${weather[item].Night.PrecipitationIntensity} ${weather[item].Night.PrecipitationType}.`;
