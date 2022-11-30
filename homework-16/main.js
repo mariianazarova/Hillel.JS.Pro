@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector("form");
     const search = document.querySelector(".header-search");
     const moviesEl = document.querySelector(".movies");
+    const paginationEl = document.querySelector('.pagination');
     let currentPage = 1;
     let rows = 10;
     form.addEventListener("submit", (e) => {
@@ -14,29 +15,27 @@ window.addEventListener('DOMContentLoaded', () => {
 
     })
 
-
     async function getMovies(url) {
         const resp = await fetch(url);
         const respData = await resp.json();
         showMovies(respData);
-        displayPagination(respData.totalResults, rows);
+        
     }
-    async function getPage(page) {
+    async function ShowPage(page) {
         const resp = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${search.value}&page=${page}`);
         const respData = await resp.json();
         showMovies(respData);
+        displayPagination(respData.totalResults, rows);
     }
 
     function showMovies(data) {
         moviesEl.innerHTML = "";
+        paginationEl.innerHTML="";
         if (!data.Search) {
             moviesEl.innerHTML = "Sorry we cannot find movie";
         }
-        currentPage--;
-        const start = rows * currentPage;
-        const end = start + rows;
-        const paginatedData = data.Search.slice(start, end);
-        paginatedData.forEach(movie => {
+
+        data.Search.forEach(movie => {
             const movieEl = document.createElement("div");
             movieEl.classList.add("movie");
             movieEl.innerHTML = `
@@ -99,7 +98,7 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 
     function displayPagination(totalResults, rowPerPage) {
-        const paginationEl = document.querySelector('.pagination');
+       
         const pagesCount = Math.ceil(totalResults / rowPerPage);
         const ulEl = document.createElement("ul");
         ulEl.classList.add('pagination-list');
@@ -109,7 +108,7 @@ window.addEventListener('DOMContentLoaded', () => {
             ulEl.appendChild(liEl);
         }
         paginationEl.appendChild(ulEl);
-        paginationEl="";
+        paginationEl = "";
     }
 
     function displayPaginationBtn(page) {
@@ -122,7 +121,7 @@ window.addEventListener('DOMContentLoaded', () => {
         liEl.addEventListener('click', () => {
             currentPage = page;
 
-            getPage(page);
+            ShowPage(page);
 
             let currentItemLi = document.querySelector('li.pagination-item-active');
             currentItemLi.classList.remove('pagination-item-active');
