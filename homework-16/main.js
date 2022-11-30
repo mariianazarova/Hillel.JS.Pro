@@ -1,5 +1,4 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const API_KEY = "f67b2711";
     const form = document.querySelector("form");
     const search = document.querySelector(".header-search");
     const moviesEl = document.querySelector(".movies");
@@ -9,9 +8,9 @@ window.addEventListener('DOMContentLoaded', () => {
     form.addEventListener("submit", (e) => {
         e.preventDefault();
         getPage();
-      
+
     })
-   
+
     async function getPage(page) {
         const resp = await fetch(`http://www.omdbapi.com/?apikey=f67b2711&s=${search.value}&page=${page}`);
         const respData = await resp.json();
@@ -21,7 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function showMovies(data) {
         moviesEl.innerHTML = "";
-        paginationEl.innerHTML="";
+        paginationEl.innerHTML = "";
         if (!data.Search) {
             moviesEl.innerHTML = "Sorry we cannot find movie";
         }
@@ -112,10 +111,8 @@ window.addEventListener('DOMContentLoaded', () => {
             currentItemLi.classList.remove('pagination-item-active');
 
             liEl.classList.add('pagination-item-active');
-            
-        })
 
+        })
         return liEl;
     }
-
 })
