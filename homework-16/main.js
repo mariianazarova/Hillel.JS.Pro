@@ -8,22 +8,12 @@ window.addEventListener('DOMContentLoaded', () => {
     let rows = 10;
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-        const API_URL = `http://www.omdbapi.com/?apikey=f67b2711&s=${search.value}`;
-
-        getMovies(API_URL);
-        search.value = "";
-
+        getPage();
+      
     })
-
-    async function getMovies(url) {
-        const resp = await fetch(url);
-        const respData = await resp.json();
-        showMovies(respData);
-        displayPagination(respData.totalResults, rows);
-        
-    }
-    async function ShowPage(page) {
-        const resp = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${search.value}&page=${page}`);
+   
+    async function getPage(page) {
+        const resp = await fetch(`http://www.omdbapi.com/?apikey=f67b2711&s=${search.value}&page=${page}`);
         const respData = await resp.json();
         showMovies(respData);
         displayPagination(respData.totalResults, rows);
@@ -92,14 +82,8 @@ window.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     })
-    window.addEventListener("keydown", (e) => {
-        if (e.keyCode === 27) {
-            closeModal();
-        }
-    })
 
     function displayPagination(totalResults, rowPerPage) {
-       
         const pagesCount = Math.ceil(totalResults / rowPerPage);
         const ulEl = document.createElement("ul");
         ulEl.classList.add('pagination-list');
@@ -109,25 +93,26 @@ window.addEventListener('DOMContentLoaded', () => {
             ulEl.appendChild(liEl);
         }
         paginationEl.appendChild(ulEl);
-        paginationEl = "";
+
     }
 
     function displayPaginationBtn(page) {
         const liEl = document.createElement("li");
-        liEl.classList.add('pagination-item')
-        liEl.innerText = page
+        liEl.classList.add('pagination-item');
+        liEl.innerText = page;
 
         if (currentPage === page) liEl.classList.add('pagination-item-active');
 
         liEl.addEventListener('click', () => {
             currentPage = page;
 
-            ShowPage(page);
+            getPage(currentPage);
 
             let currentItemLi = document.querySelector('li.pagination-item-active');
             currentItemLi.classList.remove('pagination-item-active');
 
             liEl.classList.add('pagination-item-active');
+            
         })
 
         return liEl;
