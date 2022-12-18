@@ -12,8 +12,8 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 
     async function getPage(page) {
-        const resp = await fetch(`http://www.omdbapi.com/?apikey=f67b2711&s=${search.value}&page=${page}`);
-        const respData = await resp.json();
+        const resp = await axios.get(`http://www.omdbapi.com/?apikey=f67b2711&s=${search.value}&page=${page}`);
+        const respData = resp.data;
         showMovies(respData);
         displayPagination(respData.totalResults, rows);
     }
@@ -49,8 +49,8 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     const modalEl = document.querySelector(".modal");
     async function openModal(id) {
-        const resp = await fetch("http://www.omdbapi.com/?apikey=f67b2711&i=" + id);
-        const respData = await resp.json();
+        const resp = await axios.get("http://www.omdbapi.com/?apikey=f67b2711&i=" + id);
+        const respData = resp.data;
         modalEl.classList.add("modal-show");
         modalEl.innerHTML = `
 <div class="modal-card">
