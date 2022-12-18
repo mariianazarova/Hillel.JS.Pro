@@ -1,26 +1,27 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector("form");
-    const search = document.querySelector(".header-search");
-    const moviesEl = document.querySelector(".movies");
+    const form = document.querySelector('form');
+    const search = document.querySelector('.header-search');
+    const moviesEl = document.querySelector('.movies');
     const paginationEl = document.querySelector('.pagination');
+    const API_KEY = 'f67b2711';
     let currentPage = 1;
     let rows = 10;
-    form.addEventListener("submit", (e) => {
+    form.addEventListener('submit', (e) => {
         e.preventDefault();
         getPage();
 
     })
 
     async function getPage(page) {
-        const resp = await axios.get(`http://www.omdbapi.com/?apikey=f67b2711&s=${search.value}&page=${page}`);
+        const resp = await axios.get(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${search.value}&page=${page}`);
         const respData = resp.data;
         showMovies(respData);
         displayPagination(respData.totalResults, rows);
     }
 
     function showMovies(data) {
-        moviesEl.innerHTML = "";
-        paginationEl.innerHTML = "";
+        moviesEl.innerHTML = '';
+        paginationEl.innerHTML = '';
         if (!data.Search) {
             moviesEl.innerHTML = "Sorry we cannot find movie";
         }
@@ -41,7 +42,7 @@ window.addEventListener('DOMContentLoaded', () => {
             <div class="movie-year">${movie.Year}</div>
         </div>
     </div>`;
-            movieEl.addEventListener("click", () => openModal(movie.imdbID));
+            movieEl.addEventListener('click', () => openModal(movie.imdbID));
             moviesEl.appendChild(movieEl);
 
         });
@@ -49,9 +50,9 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     const modalEl = document.querySelector(".modal");
     async function openModal(id) {
-        const resp = await axios.get("http://www.omdbapi.com/?apikey=f67b2711&i=" + id);
+        const resp = await axios.get('http://www.omdbapi.com/?apikey=f67b2711&i=' + id);
         const respData = resp.data;
-        modalEl.classList.add("modal-show");
+        modalEl.classList.add('modal-show');
         modalEl.innerHTML = `
 <div class="modal-card">
     <img class="modal-movie-backdrop" src="${respData.Poster}" alt="">
@@ -69,12 +70,12 @@ window.addEventListener('DOMContentLoaded', () => {
 </div>
 `
         const btnClose = document.querySelector(".modal-button-close");
-        btnClose.addEventListener("click", () => closeModal());
+        btnClose.addEventListener('click', () => closeModal());
     }
 
     function closeModal() {
-        modalEl.classList.remove("modal-show");
-        document.body.classList.remove("stop-scrolling");
+        modalEl.classList.remove('modal-show');
+        document.body.classList.remove('stop-scrolling');
     }
     window.addEventListener("click", (e) => {
         if (e.target === modalEl) {
@@ -84,7 +85,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function displayPagination(totalResults, rowPerPage) {
         const pagesCount = Math.ceil(totalResults / rowPerPage);
-        const ulEl = document.createElement("ul");
+        const ulEl = document.createElement('ul');
         ulEl.classList.add('pagination-list');
 
         for (let i = 0; i < pagesCount; i++) {
@@ -96,7 +97,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayPaginationBtn(page) {
-        const liEl = document.createElement("li");
+        const liEl = document.createElement('li');
         liEl.classList.add('pagination-item');
         liEl.innerText = page;
 
